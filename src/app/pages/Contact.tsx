@@ -5,8 +5,7 @@ import { Input } from '../components/ui/input';
 import { Textarea } from '../components/ui/textarea';
 import { Label } from '../components/ui/label';
 import { toast } from 'sonner';
-import { API_URL } from '../lib/supabase';
-import { publicAnonKey } from '../../../utils/supabase/info';
+import { API_URL, publicAnonKey } from '../lib/supabase';
 import { motion } from 'motion/react';
 
 export function Contact() {

@@ -3,8 +3,7 @@ import { Github, ExternalLink, Search } from 'lucide-react';
 import { Input } from '../components/ui/input';
 import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
-import { API_URL } from '../lib/supabase';
-import { publicAnonKey } from '../../../utils/supabase/info';
+import { API_URL, publicAnonKey } from '../lib/supabase';
 import { motion, AnimatePresence } from 'motion/react';
 
 interface Project {

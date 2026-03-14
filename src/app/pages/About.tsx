@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Code, Briefcase, GraduationCap, Award } from 'lucide-react';
-import { API_URL } from '../lib/supabase';
-import { publicAnonKey } from '../../../utils/supabase/info';
+import { API_URL, publicAnonKey } from '../lib/supabase';
 import { motion } from 'motion/react';
 
 interface Profile {

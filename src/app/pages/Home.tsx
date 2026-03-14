@@ -4,8 +4,7 @@ import { Link } from 'react-router';
 import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
 import { SetupGuide } from '../components/SetupGuide';
-import { API_URL } from '../lib/supabase';
-import { publicAnonKey } from '../../../utils/supabase/info';
+import { API_URL, publicAnonKey } from '../lib/supabase';
 import { motion, useScroll, useTransform } from 'motion/react';
 
 interface Profile {

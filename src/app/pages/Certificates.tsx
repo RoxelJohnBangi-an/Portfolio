@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Award, Calendar, ExternalLink } from 'lucide-react';
 import { Badge } from '../components/ui/badge';
-import { API_URL } from '../lib/supabase';
-import { publicAnonKey } from '../../../utils/supabase/info';
+import { API_URL, publicAnonKey } from '../lib/supabase';
 
 interface Certificate {
   id: string;

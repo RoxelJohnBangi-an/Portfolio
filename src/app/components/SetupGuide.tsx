@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { X, CheckCircle, Circle } from 'lucide-react';
 import { Button } from './ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from './ui/card';
-import { API_URL } from '../lib/supabase';
-import { publicAnonKey } from '../../../utils/supabase/info';
+import { API_URL, publicAnonKey } from '../lib/supabase';
 
 export function SetupGuide() {
   const [showGuide, setShowGuide] = useState(false);
