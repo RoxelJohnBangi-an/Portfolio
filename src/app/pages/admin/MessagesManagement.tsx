@@ -167,6 +167,8 @@ export function MessagesManagement() {
                         e.stopPropagation();
                         handleViewMessage(message);
                       }}
+                      aria-label="View message"
+                      title="View message"
                     >
                       <Eye className="h-4 w-4" />
                     </Button>
@@ -177,6 +179,8 @@ export function MessagesManagement() {
                         e.stopPropagation();
                         handleDelete(message.id);
                       }}
+                      aria-label="Delete message"
+                      title="Delete message"
                     >
                       <Trash2 className="h-4 w-4 text-red-600" />
                     </Button>

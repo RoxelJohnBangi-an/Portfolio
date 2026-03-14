@@ -192,6 +192,8 @@ export function SkillsManagement() {
                             size="sm"
                             variant="ghost"
                             onClick={() => handleOpenDialog(skill)}
+                            aria-label="Edit skill"
+                            title="Edit skill"
                           >
                             <Edit className="h-3 w-3" />
                           </Button>
@@ -199,6 +201,8 @@ export function SkillsManagement() {
                             size="sm"
                             variant="ghost"
                             onClick={() => handleDelete(skill.id)}
+                            aria-label="Delete skill"
+                            title="Delete skill"
                           >
                             <Trash2 className="h-3 w-3 text-red-600" />
                           </Button>

@@ -67,6 +67,8 @@ export function SetupGuide() {
             </div>
             <button
               onClick={() => setShowGuide(false)}
+              aria-label="Close guide"
+              title="Close guide"
               className="p-1 hover:bg-gray-100 dark:hover:bg-gray-800 rounded"
             >
               <X className="h-5 w-5" />

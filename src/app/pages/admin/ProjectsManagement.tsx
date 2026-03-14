@@ -195,6 +195,8 @@ export function ProjectsManagement() {
                       size="sm"
                       variant="ghost"
                       onClick={() => handleOpenDialog(project)}
+                      aria-label="Edit project"
+                      title="Edit project"
                     >
                       <Edit className="h-4 w-4" />
                     </Button>
@@ -202,6 +204,8 @@ export function ProjectsManagement() {
                       size="sm"
                       variant="ghost"
                       onClick={() => handleDelete(project.id)}
+                      aria-label="Delete project"
+                      title="Delete project"
                     >
                       <Trash2 className="h-4 w-4 text-red-600" />
                     </Button>

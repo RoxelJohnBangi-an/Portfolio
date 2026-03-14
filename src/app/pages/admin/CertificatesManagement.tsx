@@ -190,6 +190,8 @@ export function CertificatesManagement() {
                       size="sm"
                       variant="ghost"
                       onClick={() => handleOpenDialog(cert)}
+                      aria-label="Edit certificate"
+                      title="Edit certificate"
                     >
                       <Edit className="h-4 w-4" />
                     </Button>
@@ -197,6 +199,8 @@ export function CertificatesManagement() {
                       size="sm"
                       variant="ghost"
                       onClick={() => handleDelete(cert.id)}
+                      aria-label="Delete certificate"
+                      title="Delete certificate"
                     >
                       <Trash2 className="h-4 w-4 text-red-600" />
                     </Button>
