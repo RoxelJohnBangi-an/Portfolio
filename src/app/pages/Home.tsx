@@ -82,7 +82,7 @@ export function Home() {
         title: 'Full Stack Developer',
         bio: 'Passionate about creating beautiful and functional web applications. Specialized in modern web technologies and clean code practices.',
         aboutMe: 'Passionate developer with expertise in building modern web applications. I love solving complex problems and creating intuitive user experiences.',
-        profileImage: '/src/assets/profile_pic.png'
+        profileImage: '/profile_pic.png'
       });
     }
   };
