@@ -18,6 +18,32 @@ interface Project {
   featured?: boolean;
 }
 
+// Add this array above the Projects() function
+const staticProjects: Project[] = [
+  {
+    id: 'nexgen-landing-2026',
+    title: 'NexGen',
+    description: 'The all-in-one platform to manage your team, track analytics, and build products users love. Designed for modern software teams.',
+    techStack: ['HTML', 'CSS', 'JavaScript'],
+    category: 'Web App',
+    image: '/GenX.png',
+    liveUrl: 'https://nextgen101.netlify.app',   
+    githubUrl: 'https://github.com/RoxelJohnBangi-an/NextGen.git', 
+    featured: true,
+  },
+  {
+    id: 'apex-landing-2026',
+    title: 'Apex',
+    description: 'A secure vault for your sensitive information, built with modern web technologies.',
+    techStack: ['React', 'TypeScript', 'Tailwind CSS', 'API Integration'],
+    category: 'Web App',
+    image: '/SecureVault.png',
+    liveUrl: 'https://secure-vault-gilt.vercel.app/',   
+    githubUrl: 'https://github.com/RoxelJohnBangi-an/SecureVault.git', 
+    featured: true,
+  },
+];
+
 export function Projects() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [filteredProjects, setFilteredProjects] = useState<Project[]>([]);
@@ -33,30 +59,40 @@ export function Projects() {
     filterProjects();
   }, [searchTerm, selectedCategory, projects]);
 
-  const fetchProjects = async () => {
-    try {
-      const response = await fetch(`${API_URL}/projects`, {
-        headers: {
-          'Authorization': `Bearer ${publicAnonKey}`,
-        },
-      });
-      if (response.ok) {
-        const data = await response.json();
-        setProjects(data);
-        if (data.length > 0) {
-          const uniqueCategories = Array.from(new Set(data.map((p: Project) => p.category))) as string[];
-          if (uniqueCategories.length > 0) {
-            setSelectedCategory(uniqueCategories[0]);
-          }
+const fetchProjects = async () => {
+  try {
+    const response = await fetch(`${API_URL}/projects`, {
+      headers: {
+        'Authorization': `Bearer ${publicAnonKey}`,
+      },
+    });
+    if (response.ok) {
+      const data = await response.json();
+      const apiIds = new Set(data.map((p: Project) => p.id));
+      const merged = [
+        ...data,
+        ...staticProjects.filter((p) => !apiIds.has(p.id)), 
+      ];
+      setProjects(merged);
+      if (merged.length > 0) {
+        const uniqueCategories = Array.from(new Set(merged.map((p: Project) => p.category))) as string[];
+        if (uniqueCategories.length > 0) {
+          setSelectedCategory(uniqueCategories[0]);
         }
-        setFilteredProjects(data);
       }
-    } catch (error) {
-      console.error('Error fetching projects:', error);
-    } finally {
-      setLoading(false);
+      setFilteredProjects(merged);
+    } else {
+      setProjects(staticProjects);       
+      setFilteredProjects(staticProjects);
     }
-  };
+  } catch (error) {
+    console.error('Error fetching projects:', error);
+    setProjects(staticProjects);         
+    setFilteredProjects(staticProjects);
+  } finally {
+    setLoading(false);
+  }
+};
 
   const filterProjects = () => {
     let filtered = projects;
@@ -102,38 +138,6 @@ export function Projects() {
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             A collection of projects I've worked on, showcasing my skills and experience.
           </p>
-        </motion.div>
-
-        {/* Search and Filter */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="mb-8 space-y-4"
-        >
-          <div className="relative max-w-md mx-auto">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-            <Input
-              type="text"
-              placeholder="Search projects..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10"
-            />
-          </div>
-
-          <div className="flex flex-wrap justify-center gap-2">
-            {categories.map((category) => (
-              <Button
-                key={category}
-                variant={selectedCategory === category ? 'default' : 'outline'}
-                size="sm"
-                onClick={() => setSelectedCategory(category)}
-              >
-                {category}
-              </Button>
-            ))}
-          </div>
         </motion.div>
 
         {/* Projects Grid */}
@@ -225,16 +229,7 @@ export function Projects() {
             ))}
           </AnimatePresence>
         </motion.div>
-      ) : (
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="text-center py-12"
-        >
-            <p className="text-gray-600 dark:text-gray-400">
-              No projects found. Try adjusting your search or filters.</p>
-            </motion.div>
-          )}
+     ) : null}
       </div>
     </div>
   );
