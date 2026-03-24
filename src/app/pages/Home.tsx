@@ -449,29 +449,34 @@ export function Home() {
         </section>
       )}
 
-      {/* CTA Section */}
-      <section className="py-24 bg-[#0F172A]">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="space-y-8"
+     {/* CTA Section */}
+<section className="py-24 bg-white dark:bg-[#0F172A] border-t border-gray-100 dark:border-transparent">
+  <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      className="space-y-8"
+    >
+      <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
+        Ready to start a project?
+      </h2>
+      <p className="text-xl text-gray-500 dark:text-gray-400">
+        I'm currently available for freelance work and full-time opportunities.
+      </p>
+      <div className="flex flex-wrap justify-center gap-4">
+        <Link to="/contact">
+          <Button
+            size="lg"
+            className="bg-gray-900 text-white hover:bg-gray-700 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100 h-14 px-10 text-xl font-bold border-none"
           >
-            <h2 className="text-4xl md:text-5xl font-bold">Ready to start a project?</h2>
-            <p className="text-xl text-gray-400">
-              I'm currently available for freelance work and full-time opportunities.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Link to="/contact">
-                <Button size="lg" className="bg-white text-gray-900 hover:bg-gray-100 h-14 px-10 text-xl font-bold border-none">
-                  Let's Talk
-                </Button>
-              </Link>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+            Let's Talk
+          </Button>
+        </Link>
+      </div>
+    </motion.div>
+  </div>
+</section>
     </div>
   );
 }

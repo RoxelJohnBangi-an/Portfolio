@@ -14,6 +14,30 @@ interface Certificate {
   skills?: string[];
 }
 
+const staticCertificates: Certificate[] = [
+  {
+    id: 'w3s-html-2025',
+    title: 'Certified HTML Developer',
+    issuer: 'W3Schools',
+    date: '2025-03-15',
+    description: 'Passed the W3Schools HTML certification exam at the Professional level.',
+    image: '/html_certificate.png',
+    credentialUrl: 'https://verify.w3schools.com/XXXXXXXXX',
+    skills: ['HTML', 'Web Development', 'Frontend'],
+  },
+  {
+    id: 'w3s-css-2024',          
+    title: 'Certified Laravel Developer',  
+    issuer: 'W3Schools',               
+    date: '2024-02-23',               
+    description: 'Passed the W3Schools CSS certification exam at the Professional level.',
+    image: '/certified_laravel.png',
+    credentialUrl: 'https://verify.w3schools.com/XXXXXXXXX',
+    skills: ['API integration', 'Database management', 'Clean architecture'],
+  },
+];
+
+
 export function Certificates() {
   const [certificates, setCertificates] = useState<Certificate[]>([]);
   const [loading, setLoading] = useState(true);
@@ -31,10 +55,18 @@ export function Certificates() {
       });
       if (response.ok) {
         const data = await response.json();
-        setCertificates(data);
+        const apiIds = new Set(data.map((c: Certificate) => c.id));
+        const merged = [
+          ...data,
+          ...staticCertificates.filter((c) => !apiIds.has(c.id)),
+        ];
+        setCertificates(merged);
+      } else {
+        setCertificates(staticCertificates);
       }
     } catch (error) {
       console.error('Error fetching certificates:', error);
+      setCertificates(staticCertificates);
     } finally {
       setLoading(false);
     }
@@ -51,6 +83,7 @@ export function Certificates() {
   return (
     <div className="min-h-screen bg-white dark:bg-gray-950">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+
         {/* Header */}
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
@@ -124,6 +157,7 @@ export function Certificates() {
                       href={cert.credentialUrl}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={`View credential for ${cert.title}`}
                       className="inline-flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline"
                     >
                       <ExternalLink className="h-4 w-4 mr-1" />
@@ -154,19 +188,20 @@ export function Certificates() {
               </div>
               <div>
                 <div className="text-5xl font-bold mb-2">
-                  {new Set(certificates.map(c => c.issuer)).size}
+                  {new Set(certificates.map((c) => c.issuer)).size}
                 </div>
                 <div className="text-blue-100">Issuing Organizations</div>
               </div>
               <div>
                 <div className="text-5xl font-bold mb-2">
-                  {new Date().getFullYear() - Math.min(...certificates.map(c => new Date(c.date).getFullYear()))}+
+                  {new Date().getFullYear() - Math.min(...certificates.map((c) => new Date(c.date).getFullYear()))}+
                 </div>
                 <div className="text-blue-100">Years Learning</div>
               </div>
             </div>
           </div>
         )}
+
       </div>
     </div>
   );
