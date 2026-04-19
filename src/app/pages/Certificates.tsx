@@ -17,13 +17,13 @@ interface Certificate {
 const staticCertificates: Certificate[] = [
   {
     id: 'w3s-html-2025',
-    title: 'Certified HTML Developer',
-    issuer: 'W3Schools',
-    date: '2025-03-15',
-    description: 'Passed the W3Schools HTML certification exam at the Professional level.',
-    image: '/html_certificate.png',
-    credentialUrl: 'https://verify.w3schools.com/XXXXXXXXX',
-    skills: ['HTML', 'Web Development', 'Frontend'],
+    title: 'Cyber Security ',
+    issuer: 'Cisco Networking Academy',
+    date: '2026-04-19',
+    description: 'Passed the Cisco Networking Academy as Cyber Security certification exam at the Professional level.',
+    image: '/cisco-badge.png',
+    credentialUrl: 'https://www.credly.com/badges/7b8484cc-b878-4370-aff0-e3d7d47c7dce/public_url',
+    skills: ['Cyber Security','Network Vulnerabilities','Privacy and Data Confidentiality','Threat Detection'],
   },
   {
     id: 'w3s-css-2024',          
